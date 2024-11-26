@@ -1,0 +1,48 @@
+<div class="flex justify-center pt-10">
+    <div
+        class="w-full max-w-md bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex justify-center">
+            <img class="p-8 rounded-t-lg" [src]="pokemon?.picture" alt="{{pokemon?.name}}" />
+        </div>
+        <div class="px-5 pb-5">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h5 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white uppercase">
+                        {{pokemon?.name}}
+                    </h5>
+                </div>
+                <div class="flex flex-wrap">
+                    <div *ngFor="let type of pokemon?.types"
+                        class="text-sm p-2 m-1 rounded-md text-slate-900 dark:text-slate-900{{ type | pokemonTypeColor }}">
+                        {{ type }}
+                    </div>
+                </div>
+            </div>
+            <span class="text-sm text-gray-500 text-center dark:text-gray-400">{{pokemon?.created |
+                date:"dd/MM/yyyy"}}
+            </span>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center mt-2.5 mb-5">
+                    <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                        <h2 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white ">Points de vie
+                        </h2>
+                    </div>
+                    <span
+                        class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">{{pokemon?.hp}}</span>
+                </div>
+                <div class="flex items-center mt-2.5 mb-5">
+                    <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                        <h2 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white ">Dégâts
+                        </h2>
+                    </div>
+                    <span
+                        class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">{{pokemon?.cp}}</span>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <a (click)="goToPokemonList()"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
