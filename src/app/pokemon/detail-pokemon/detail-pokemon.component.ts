@@ -5,10 +5,11 @@ import { PokemonTypeColorPipe } from '../pokemon-type-color.pipe';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { PokemonService } from '../pokemon.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-detail-pokemon',
-  imports: [PokemonTypeColorPipe, CommonModule],
+  imports: [PokemonTypeColorPipe, CommonModule, HttpClientModule],
   templateUrl: './detail-pokemon.component.html',
   providers: [PokemonService]
 })
@@ -26,7 +27,7 @@ export class DetailPokemonComponent implements OnInit {
     const pokemonId: string | null = this.route.snapshot.paramMap.get('id');
 
     if (pokemonId) {
-      this.pokemon = this.pokemonService.getPokemonByID(+pokemonId);
+      this.pokemonService.getPokemonByID(+pokemonId).subscribe(pokemon => this.pokemon = pokemon);
     } else {
       console.error('No pokemon found with this id');
       return;
@@ -35,6 +36,10 @@ export class DetailPokemonComponent implements OnInit {
 
   goToPokemonList() {
     this.router.navigate(['/pokemons']);
+  }
+
+  goToEditPokemon(pokemonId: number) {
+    this.router.navigate([`/edit/pokemon/${pokemonId}`]);
   }
 
 }
